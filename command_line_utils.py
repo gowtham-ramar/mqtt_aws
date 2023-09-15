@@ -58,7 +58,7 @@ class CommandLineUtils:
         # if we have already parsed, then return the cached parsed commands
         if self.parsed_commands is not None:
             return self.parsed_commands
-
+        print(self.commands.values())
         # add all the commands
         for command in self.commands.values():
             if not command["action"] is None:
@@ -95,7 +95,7 @@ class CommandLineUtils:
             CommandLineUtils.m_cmd_endpoint,
             "<str>",
             "The endpoint of the mqtt server not including a port.",
-            True,
+            False,
             str)
         self.register_command(
             CommandLineUtils.m_cmd_ca_file,
@@ -166,8 +166,8 @@ class CommandLineUtils:
                 x.name for x in io.LogLevel])
 
     def add_common_key_cert_commands(self):
-        self.register_command(CommandLineUtils.m_cmd_key_file, "<path>", "Path to your key in PEM format.", True, str)
-        self.register_command(CommandLineUtils.m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.", True, str)
+        self.register_command(CommandLineUtils.m_cmd_key_file, "<path>", "Path to your key in PEM format.", False, str)
+        self.register_command(CommandLineUtils.m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.", False, str)
 
     def add_common_custom_authorizer_commands(self):
         self.register_command(
@@ -686,18 +686,22 @@ class CommandLineUtils:
         cmdUtils.add_common_proxy_commands()
         cmdUtils.add_common_logging_commands()
         cmdUtils.add_common_key_cert_commands()
+       
         cmdUtils.register_command(CommandLineUtils.m_cmd_port, "<int>", "Connection port. AWS IoT supports 443 and 8883 (optional, default=8883).", type=int)
         cmdUtils.register_command(CommandLineUtils.m_cmd_client_id, "<str>", "Client ID to use for MQTT connection (optional, default='test-*').", default="test-" + str(uuid4()))
         cmdUtils.register_command(CommandLineUtils.m_cmd_count, "<int>", "The number of messages to send (optional, default='10').", default=10, type=int)
         cmdUtils.get_args()
 
         cmdData = CommandLineUtils.CmdData()
-        cmdData.input_endpoint = cmdUtils.get_command_required(CommandLineUtils.m_cmd_endpoint)
+        cmdData.input_endpoint = "a3bd9ic9v4dpst-ats.iot.ap-southeast-1.amazonaws.com" #cmdUtils.get_command_required(CommandLineUtils.m_cmd_endpoint)
         cmdData.input_port = int(cmdUtils.get_command(CommandLineUtils.m_cmd_port, 8883))
-        cmdData.input_cert = cmdUtils.get_command_required(CommandLineUtils.m_cmd_cert_file)
-        cmdData.input_key = cmdUtils.get_command_required(CommandLineUtils.m_cmd_key_file)
-        cmdData.input_ca = cmdUtils.get_command(CommandLineUtils.m_cmd_ca_file, None)
+       
+        cmdData.input_cert = "things-demo.cert.pem"#cmdUtils.get_command_required(CommandLineUtils.m_cmd_cert_file)
+        cmdData.input_key = "things-demo.private.key"#cmdUtils.get_command_required(CommandLineUtils.m_cmd_key_file)
+        cmdData.input_ca = "root-CA.crt"#cmdUtils.get_command(CommandLineUtils.m_cmd_ca_file, None)
+       
         cmdData.input_clientId = cmdUtils.get_command(CommandLineUtils.m_cmd_client_id, "test-" + str(uuid4()))
+        
         cmdData.input_proxy_host = cmdUtils.get_command(CommandLineUtils.m_cmd_proxy_host)
         cmdData.input_proxy_port = int(cmdUtils.get_command(CommandLineUtils.m_cmd_proxy_port))
         cmdData.input_message = cmdUtils.get_command(CommandLineUtils.m_cmd_message, "Hello AWS Iot Testing 6")
