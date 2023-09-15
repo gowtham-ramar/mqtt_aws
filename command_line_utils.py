@@ -58,7 +58,6 @@ class CommandLineUtils:
         # if we have already parsed, then return the cached parsed commands
         if self.parsed_commands is not None:
             return self.parsed_commands
-        print(self.commands.values())
         # add all the commands
         for command in self.commands.values():
             if not command["action"] is None:

@@ -18,12 +18,10 @@ from command_line_utils import CommandLineUtils
 # cmdData is the arguments/input from the command line placed into a single struct for
 # use in this sample. This handles all of the command line parsing, validating, etc.
 # See the Utils/CommandLineUtils for more information.
-print("tesss")
 cmdData = CommandLineUtils.parse_sample_input_pubsub()
-print("tsssss")
+
 received_count = 0
 received_all_event = threading.Event()
-print("adasdfsadfs")
 # Callback when connection is accidentally lost.
 def on_connection_interrupted(connection, error, **kwargs):
     print("Connection interrupted. error: {}".format(error))
