@@ -104,7 +104,7 @@ if __name__ == '__main__':
 
       proxy_options,
       )
-    print(cmdData.__dict__)
+   
 
     if not cmdData.input_is_ci:
         print(f"Connecting to {cmdData.input_endpoint} with client ID '{cmdData.input_clientId}'...")
@@ -117,7 +117,7 @@ if __name__ == '__main__':
     print("Connected!")
 
     message_count = cmdData.input_count
-    message_topic = cmdData.input_topic
+   
     message_string = cmdData.input_message
     message_topic="test/gowtham"
     message_count=10

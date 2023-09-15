@@ -246,7 +246,7 @@ class CommandLineUtils:
         input_proxy_host : str
         input_proxy_port : int
         # PubSub
-        input_topic : str
+       
         input_message : str
         input_count : int
         # Websockets
@@ -296,10 +296,7 @@ class CommandLineUtils:
         def __init__(self) -> None:
             pass
 
-        def parse_input_topic(self, cmdUtils):
-            self.input_topic = cmdUtils.get_command(CommandLineUtils.m_cmd_topic, "test/topic")
-            if (cmdUtils.get_command(CommandLineUtils.m_cmd_is_ci) != None):
-                self.input_topic += "/" + str(uuid4())
+        
 
     def parse_sample_input_basic_connect():
         # Parse arguments
@@ -355,7 +352,7 @@ class CommandLineUtils:
         cmdUtils.get_args()
 
         cmdData = CommandLineUtils.CmdData()
-        cmdData.parse_input_topic(cmdUtils)
+ 
         cmdData.input_message = cmdUtils.get_command(CommandLineUtils.m_cmd_message, "Hello AWS Iot Testing 3")
         cmdData.input_cert = cmdUtils.get_command_required(CommandLineUtils.m_cmd_cert_file)
         cmdData.input_key = cmdUtils.get_command_required(CommandLineUtils.m_cmd_key_file)
@@ -594,7 +591,7 @@ class CommandLineUtils:
         cmdData.input_proxy_host = cmdUtils.get_command(CommandLineUtils.m_cmd_proxy_host)
         cmdData.input_proxy_port = int(cmdUtils.get_command(CommandLineUtils.m_cmd_proxy_port))
         cmdData.input_message = cmdUtils.get_command(CommandLineUtils.m_cmd_message, "Hello AWS Iot Testing 4")
-        cmdData.parse_input_topic(cmdUtils)
+ 
         cmdData.input_count = int(cmdUtils.get_command(CommandLineUtils.m_cmd_count, 10))
         cmdData.input_is_ci = cmdUtils.get_command(CommandLineUtils.m_cmd_is_ci, None) != None
         return cmdData
@@ -641,7 +638,7 @@ class CommandLineUtils:
         cmdData.input_proxy_host = cmdUtils.get_command(CommandLineUtils.m_cmd_proxy_host)
         cmdData.input_proxy_port = int(cmdUtils.get_command(CommandLineUtils.m_cmd_proxy_port))
         cmdData.input_message = cmdUtils.get_command(CommandLineUtils.m_cmd_message, "Hello AWS Iot Testing 5")
-        cmdData.parse_input_topic(cmdUtils)
+       
         cmdData.input_count = cmdUtils.get_command(CommandLineUtils.m_cmd_count, 10)
         cmdData.input_group_identifier = cmdUtils.get_command(CommandLineUtils.m_cmd_group_identifier, "python-sample")
         cmdData.input_is_ci = cmdUtils.get_command(CommandLineUtils.m_cmd_is_ci, None) != None
@@ -704,7 +701,7 @@ class CommandLineUtils:
         cmdData.input_proxy_host = cmdUtils.get_command(CommandLineUtils.m_cmd_proxy_host)
         cmdData.input_proxy_port = int(cmdUtils.get_command(CommandLineUtils.m_cmd_proxy_port))
         cmdData.input_message = cmdUtils.get_command(CommandLineUtils.m_cmd_message, "Hello AWS Iot Testing 6")
-        cmdData.parse_input_topic(cmdUtils)
+        
         cmdData.input_count = int(cmdUtils.get_command(CommandLineUtils.m_cmd_count, 10))
         cmdData.input_is_ci = cmdUtils.get_command(CommandLineUtils.m_cmd_is_ci, None) != None
         return cmdData
