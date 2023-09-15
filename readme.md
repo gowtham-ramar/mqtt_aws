@@ -1,0 +1,1 @@
+D:\ProgramFile\Python\python.exe pubsub.py --endpoint a3bd9ic9v4dpst-ats.iot.ap-southeast-1.amazonaws.com --ca_file root-CA.crt --cert things-demo.cert.pem --key things-demo.private.key --client_id basicPubSub --topic sdk/test/python --count 0
