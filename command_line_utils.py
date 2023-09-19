@@ -153,7 +153,7 @@ class CommandLineUtils:
             CommandLineUtils.m_cmd_message,
             "<str>",
             "The message to send in the payload (optional, default='Hello AWS Iot Testing 1').",
-            default="Hello AWS Iot Testing 2")
+            default="Message from IOT Client")
 
     def add_common_logging_commands(self):
         self.register_command(

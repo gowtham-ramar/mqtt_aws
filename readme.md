@@ -1,1 +1,1 @@
-D:\ProgramFile\Python\python.exe pubsub.py --ca_file root-CA.crt --cert things-demo.cert.pem --key things-demo.private.key --client_id basicPubSub --count 0
+D:\ProgramFile\Python\python.exe server.py   

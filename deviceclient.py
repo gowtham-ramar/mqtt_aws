@@ -5,9 +5,11 @@ from awscrt import mqtt, http
 from awsiot import mqtt_connection_builder
 import sys
 import threading
+import random
 import time
 import json
 from command_line_utils import CommandLineUtils
+from uuid import uuid4
 
 # This sample uses the Message Broker for AWS IoT to send and receive messages
 # through an MQTT connection. On startup, the device connects to the server,
@@ -79,7 +81,7 @@ if __name__ == '__main__':
             proxy_options = http.HttpProxyOptions(
                 host_name=cmdData.input_proxy_host,
                 port=cmdData.input_proxy_port)
-
+        print(cmdData.input_clientId)
         # Create a MQTT connection from the command line data
         mqtt_connection = mqtt_connection_builder.mtls_from_path(
             endpoint=cmdData.input_endpoint,
@@ -112,8 +114,11 @@ if __name__ == '__main__':
         message_count = cmdData.input_count
     
         message_string = cmdData.input_message
-        message_topic="test/gowtham"
-        message_count=10
+        random.seed(10)
+        message_topic="test/"+str(int(random.random()*100))+"/mobile"
+        print(message_topic)
+        message_count=1000
+        
         # Subscribe
         print("Subscribing to topic '{}'...".format(message_topic))
         subscribe_future, packet_id = mqtt_connection.subscribe(
@@ -134,7 +139,7 @@ if __name__ == '__main__':
                 print("Sending {} message(s)".format(message_count))
 
             publish_count = 1
-            while (publish_count <= message_count) or (message_count == 0):
+            while True:
                 message = "{} [{}]".format(message_string, publish_count)
                 print("Publishing message to topic '{}': {}".format(message_topic, message))
                 message_json = json.dumps(message)
