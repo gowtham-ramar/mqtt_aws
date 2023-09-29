@@ -692,12 +692,12 @@ class CommandLineUtils:
         cmdUtils.get_args()
 
         cmdData = CommandLineUtils.CmdData()
-        cmdData.input_endpoint = "a3bd9ic9v4dpst-ats.iot.ap-southeast-1.amazonaws.com" #cmdUtils.get_command_required(CommandLineUtils.m_cmd_endpoint)
+        cmdData.input_endpoint = "a1vz4zd8fy3gkp-ats.iot.ap-southeast-1.amazonaws.com" #cmdUtils.get_command_required(CommandLineUtils.m_cmd_endpoint)
         cmdData.input_port = int(cmdUtils.get_command(CommandLineUtils.m_cmd_port, 8883))
        
-        cmdData.input_cert = "things-demo.cert.pem"#cmdUtils.get_command_required(CommandLineUtils.m_cmd_cert_file)
-        cmdData.input_key = "things-demo.private.key"#cmdUtils.get_command_required(CommandLineUtils.m_cmd_key_file)
-        cmdData.input_ca = "root-CA.crt"#cmdUtils.get_command(CommandLineUtils.m_cmd_ca_file, None)
+        cmdData.input_cert = "57a2e03a5e11e84061fca797b3384a4391a7b1e8ea2b6e7d1e2b686a12ef2007-certificate.pem.crt"#cmdUtils.get_command_required(CommandLineUtils.m_cmd_cert_file)
+        cmdData.input_key = "57a2e03a5e11e84061fca797b3384a4391a7b1e8ea2b6e7d1e2b686a12ef2007-private.pem.key"#cmdUtils.get_command_required(CommandLineUtils.m_cmd_key_file)
+        cmdData.input_ca = "AmazonRootCA1.pem"#cmdUtils.get_command(CommandLineUtils.m_cmd_ca_file, None)
        
         cmdData.input_clientId = cmdUtils.get_command(CommandLineUtils.m_cmd_client_id, "test-" + str(uuid4()))
         

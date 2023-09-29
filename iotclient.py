@@ -53,7 +53,11 @@ def on_resubscribe_complete(resubscribe_future):
 
 # Callback when the subscribed topic receives a message
 def on_message_received(topic, payload, dup, qos, retain, **kwargs):
-    print("Received message from topic '{}': {}".format(topic, payload))
+    json_str = payload.decode('utf-8')
+    json_data = json.loads(json_str)
+    if json_data.get("is_from_device",None) is None:       
+        print("Received message from topic '{}': {}".format(topic, payload))
+    
     global received_count
     received_count += 1
     if received_count == cmdData.input_count:
@@ -115,7 +119,8 @@ if __name__ == '__main__':
     
         message_string = cmdData.input_message
         random.seed(10)
-        message_topic="test/"+str(int(random.random()*100))+"/"
+        device_id=str(867648041510932)
+        message_topic="aws/"+device_id+"/"
         print(message_topic)
         message_count=1000
         # Subscribe
@@ -139,9 +144,20 @@ if __name__ == '__main__':
 
             publish_count = 1
             while (publish_count <= message_count) or (message_count == 0):
-                message = "{} [{}]".format(message_string, publish_count)
-                print("Publishing message to topic '{}': {}".format(message_topic, message))
-                message_json = json.dumps(message)
+                #message ="{"+ "{} [{}]".format(message_string, publish_count)+"}"
+                #print("Publishing message to topic '{}': {}".format(message_topic, message))
+                message_json = json.dumps(
+                    { 
+                        "Sensor": "soil",
+                        "ID":device_id,
+                        "Temperature":str(int(random.random()*10)),
+                        "humidity": str(int(random.random()*10)),
+                        "PH": 7,
+                        "is_from_device":True
+                        }
+                        )
+                print(message_json)
+              
                 mqtt_connection.publish(
                     topic=message_topic,
                     payload=message_json,

@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0.
 
 from awscrt import mqtt, http
+import mysql.connector
 from awsiot import mqtt_connection_builder
 import sys
 import threading
@@ -10,6 +11,20 @@ import time
 import json
 from command_line_utils import CommandLineUtils
 from uuid import uuid4
+
+
+
+host = "localhost"
+user = "root"
+password = "Gowtham@123"
+database = "testing"
+connection = mysql.connector.connect(
+    host=host,
+    user=user,
+    password=password,
+    database=database
+)
+
 
 # This sample uses the Message Broker for AWS IoT to send and receive messages
 # through an MQTT connection. On startup, the device connects to the server,
@@ -54,15 +69,32 @@ def on_resubscribe_complete(resubscribe_future):
 # Callback when the subscribed topic receives a message
 def on_message_received(topic, payload, dup, qos, retain, **kwargs):
     print("Received message from topic '{}': {}".format(topic, payload))
-    print(type(topic),type(payload))
+    #print(type(topic),type(payload))
     json_str = payload.decode('utf-8')
+    #print(json_str,type(json_str))
     json_data = json.loads(json_str)
-    message_json = json.dumps({"is_mqtt_hub_broker":True,"message":"Your Data Recevied"})
-    if json_data.get("is_mqtt_hub_broker",None) is None:
-        mqtt_connection.publish(
-        topic=topic,
-        payload=message_json,
-        qos=mqtt.QoS.AT_LEAST_ONCE)    
+    #print(type(json_data))
+    #print(json_data)
+    # cursor = connection.cursor()
+    # try:
+    #     device_id_value=json_data["ID"]
+    #     Sensor_value=json_data["Sensor"]
+    #     Temperature_value=json_data["Temperature"]
+    #     humidity_value=json_data["humidity"]
+    #     PH_value=json_data["PH"]
+    #     insert_query = "INSERT INTO testing.new_table (device_id, Sensor, Temperature, humidity, PH) VALUES (%s, %s, %s, %s, %s)"
+    #     cursor.execute(insert_query, (device_id_value, Sensor_value, Temperature_value, humidity_value, PH_value))
+
+    # except  Exception as e:
+    #     print(e)
+    # connection.commit()
+    # cursor.close()
+    # message_json = json.dumps({"is_mqtt_hub_broker":True,"message":"Your Data Recevied"})
+    # if json_data.get("is_mqtt_hub_broker",None) is None:
+    #     mqtt_connection.publish(
+    #     topic=topic,
+    #     payload=message_json,
+    #     qos=mqtt.QoS.AT_LEAST_ONCE)    
        
 
     # global received_count
@@ -126,7 +158,7 @@ if __name__ == '__main__':
     
         message_string = cmdData.input_message
         random.seed(10)
-        message_topic="test/#"
+        message_topic="aws/#"
         print(message_topic)
         message_count=1000
         # Subscribe
