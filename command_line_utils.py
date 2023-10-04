@@ -511,7 +511,7 @@ class CommandLineUtils:
         cmdData.input_custom_auth_username = cmdUtils.get_command(CommandLineUtils.m_cmd_custom_auth_username)
         cmdData.input_custom_authorizer_token_key_name = cmdUtils.get_command(CommandLineUtils.m_cmd_custom_auth_token_key_name)
         cmdData.input_custom_authorizer_token_value = cmdUtils.get_command(CommandLineUtils.m_cmd_custom_auth_token_value)
-        cmdData.input_clientId = cmdUtils.get_command(CommandLineUtils.m_cmd_client_id, "test-" + str(uuid4()))
+        cmdData.input_clientId = cmdUtils.get_command(CommandLineUtils.m_cmd_client_id, "test-" + str(987654321))
         cmdData.input_use_websockets = bool(cmdUtils.get_command(CommandLineUtils.m_cmd_use_websockets, False))
         cmdData.input_is_ci = cmdUtils.get_command(CommandLineUtils.m_cmd_is_ci, None) != None
         return cmdData
@@ -531,7 +531,7 @@ class CommandLineUtils:
             CommandLineUtils.m_cmd_client_id,
             "<str>",
             "Client ID to use for MQTT5 connection (optional, default=None).",
-            default="test-" + str(uuid4()))
+            default="test-" + str(987654321))
         cmdUtils.register_command(CommandLineUtils.m_cmd_pkcs11_lib, "<path>", "Path to PKCS#11 Library", required=True)
         cmdUtils.register_command(CommandLineUtils.m_cmd_pkcs11_pin, "<str>", "User PIN for logging into PKCS#11 token.", required=True)
         cmdUtils.register_command(CommandLineUtils.m_cmd_pkcs11_token, "<str>", "Label of the PKCS#11 token to use (optional).")
@@ -546,7 +546,7 @@ class CommandLineUtils:
         cmdData.input_cert = cmdUtils.get_command_required(CommandLineUtils.m_cmd_cert_file)
         cmdData.input_port = int(cmdUtils.get_command(CommandLineUtils.m_cmd_port, 8883))
         cmdData.input_ca = cmdUtils.get_command(CommandLineUtils.m_cmd_ca_file, None)
-        cmdData.input_clientId = cmdUtils.get_command(CommandLineUtils.m_cmd_client_id, "test-" + str(uuid4()))
+        cmdData.input_clientId = cmdUtils.get_command(CommandLineUtils.m_cmd_client_id, "test-" + str(987654321))
         cmdData.input_pkcs11_lib_path = cmdUtils.get_command_required(CommandLineUtils.m_cmd_pkcs11_lib)
         cmdData.input_pkcs11_user_pin = cmdUtils.get_command_required(CommandLineUtils.m_cmd_pkcs11_pin)
         cmdData.input_pkcs11_token_label = cmdUtils.get_command_required(CommandLineUtils.m_cmd_pkcs11_token)
@@ -571,7 +571,7 @@ class CommandLineUtils:
             CommandLineUtils.m_cmd_client_id,
             "<str>",
             "Client ID to use for MQTT5 connection (optional, default=None).",
-            default="test-" + str(uuid4()))
+            default="test-" + str(987654321))
         cmdUtils.register_command(
             CommandLineUtils.m_cmd_count,
             "<int>",
@@ -586,7 +586,7 @@ class CommandLineUtils:
         cmdData.input_cert = cmdUtils.get_command_required(CommandLineUtils.m_cmd_cert_file)
         cmdData.input_key = cmdUtils.get_command_required(CommandLineUtils.m_cmd_key_file)
         cmdData.input_ca = cmdUtils.get_command(CommandLineUtils.m_cmd_ca_file, None)
-        cmdData.input_clientId = cmdUtils.get_command(CommandLineUtils.m_cmd_client_id, "test-" + str(uuid4()))
+        cmdData.input_clientId = cmdUtils.get_command(CommandLineUtils.m_cmd_client_id, "test-" + str(987654321))
         cmdData.input_proxy_host = cmdUtils.get_command(CommandLineUtils.m_cmd_proxy_host)
         cmdData.input_proxy_port = int(cmdUtils.get_command(CommandLineUtils.m_cmd_proxy_port))
         cmdData.input_message = cmdUtils.get_command(CommandLineUtils.m_cmd_message, "Hello AWS Iot Testing 4")
@@ -612,7 +612,7 @@ class CommandLineUtils:
             "<str>",
             "Client ID to use for MQTT5 connection (optional, default=None)."
             "Note that '1', '2', and '3' will be added for to the given clientIDs since this sample uses 3 clients.",
-            default="test-" + str(uuid4()))
+            default="test-" + str(987654321))
         cmdUtils.register_command(
             CommandLineUtils.m_cmd_count,
             "<int>",
@@ -633,7 +633,7 @@ class CommandLineUtils:
         cmdData.input_cert = cmdUtils.get_command_required(CommandLineUtils.m_cmd_cert_file)
         cmdData.input_key = cmdUtils.get_command_required(CommandLineUtils.m_cmd_key_file)
         cmdData.input_ca = cmdUtils.get_command(CommandLineUtils.m_cmd_ca_file, None)
-        cmdData.input_clientId = cmdUtils.get_command(CommandLineUtils.m_cmd_client_id, "test-" + str(uuid4()))
+        cmdData.input_clientId = cmdUtils.get_command(CommandLineUtils.m_cmd_client_id, "test-" + str(987654321))
         cmdData.input_proxy_host = cmdUtils.get_command(CommandLineUtils.m_cmd_proxy_host)
         cmdData.input_proxy_port = int(cmdUtils.get_command(CommandLineUtils.m_cmd_proxy_port))
         cmdData.input_message = cmdUtils.get_command(CommandLineUtils.m_cmd_message, "Hello AWS Iot Testing 5")
