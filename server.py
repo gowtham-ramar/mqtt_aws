@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: Apache-2.0.
 
 from awscrt import mqtt, http
-import mysql.connector
 from awsiot import mqtt_connection_builder
 import sys
 import threading
@@ -14,16 +13,6 @@ from uuid import uuid4
 
 
 
-host = "localhost"
-user = "root"
-password = "Gowtham@123"
-database = "testing"
-connection = mysql.connector.connect(
-    host=host,
-    user=user,
-    password=password,
-    database=database
-)
 
 
 # This sample uses the Message Broker for AWS IoT to send and receive messages
